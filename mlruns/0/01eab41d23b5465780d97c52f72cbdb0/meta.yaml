@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/sergio%20ferro/bain-ml-engineer-challenge/mlruns/0/01eab41d23b5465780d97c52f72cbdb0/artifacts
+end_time: 1657851859729
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 01eab41d23b5465780d97c52f72cbdb0
+run_uuid: 01eab41d23b5465780d97c52f72cbdb0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1657851818439
+status: 4
+tags: []
+user_id: sergio ferro
