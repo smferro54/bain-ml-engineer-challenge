@@ -1,0 +1,16 @@
+artifact_path: sk-learn-ridge-regression
+flavors:
+  python_function:
+    env: conda.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    python_version: 3.9.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.1.1
+mlflow_version: 1.27.0
+model_uuid: 4d02a251fe5e4e2283ca7a97aaa5c947
+run_id: 7fb94b13a8894d7fbcc5a50d3bea80bb
+utc_time_created: '2022-07-15 23:50:32.983542'

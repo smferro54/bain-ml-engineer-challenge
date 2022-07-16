@@ -1,0 +1,12 @@
+name: ml engineer challenge
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9.7
+  - pip
+  - pip:
+    - pandas==1.3.4
+    - numpy==1.20.3
+    - argparse==1.1
+    - mlflow>=1.18
+    - scikit-learn==1.1.1

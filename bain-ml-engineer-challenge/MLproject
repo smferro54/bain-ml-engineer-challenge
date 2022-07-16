@@ -1,0 +1,9 @@
+name: ml engineer challenge
+conda_env: conda.yaml
+entry_points:
+  main:
+    parameters:
+      csv_precipitaciones: {default: data/precipitaciones.csv}
+      csv_banco_central: {default: data/banco_central.csv}
+      csv_precio_leche: {default: data/precio_leche.csv}
+    command: "python main.py {csv_precipitaciones} {csv_banco_central} {csv_precio_leche}"
