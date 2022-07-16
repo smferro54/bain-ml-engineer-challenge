@@ -5,7 +5,7 @@ The contents on this repository circumscribe the following:
 - A pre-processing and training pipeline that outputs a .pkl file (i.e. the serialized model). 
 - An API that takes the serialized model and exposes an endpoint to get predictions.
 
-I used MLFlow for the solution, it is open source software that can be tested locally and is cloud-provider agnostic. 
+I used MLFlow for the solution, it is open source software that can be tested locally and it is cloud-provider agnostic. 
 
 ## What you will need
 
@@ -23,7 +23,7 @@ To run this pipeline and get advantage of all its functionalities you will need:
 
 Open your preferred CLI (I use git bash) and type the following commands:
 
-`cd bain-ml-engineer-challenge_solution`
+`cd bain-ml-engineer-challenge-solution`
 
 `conda init`
 
@@ -31,7 +31,7 @@ Open your preferred CLI (I use git bash) and type the following commands:
 
 You should get a model ID when the run succeeds.
 
-![succesful model](./bain-ml-engineer-challenge/example_images/mlflow_run_success.jpg)
+![succesful model](./bain-ml-engineer-challenge-solution/example_images/mlflow_run_success.jpg)
 
 You can check the results in the web UI. 
 
@@ -39,9 +39,50 @@ You can check the results in the web UI.
 
 and view it at [localhost:5000](http://localhost:5000/)
 
-![run log](./bain-ml-engineer-challenge/example_images/matching_run.jpg)
+![run log](./bain-ml-engineer-challenge-solution/example_images/matching_run.jpg)
 
-![serialized model](./bain-ml-engineer-challenge/example_images/model_pkl.jpg)
+![serialized model](./bain-ml-engineer-challenge-solution/example_images/model_pkl.jpg)
+
+## Getting predictions from the model
+
+To deploy a local (port 1234) REST server that can serve predictions type:
+
+`mlflow models serve -m ./mlruns/0/<YOUR MODEL ID>/artifacts/sk-learn-ridge-regression -p 1234`
+
+The training stage saves the test data from training in a .csv file called X_test.csv. This will come in handy now, in a new CLI window type:
+
+`curl http://127.0.0.1:1234/invocations -H 'Content-Type: text/csv' --data-binary @X_test.csv`
+
+Which gives the following predictions:
+
+![predictions](./bain-ml-engineer-challenge-solution/example_images/predictions.jpg)
+
+[We could also use a json file for web based applications](https://mlflow.org/docs/latest/models.html#local-model-deployment). 
+
+## Containerizing the model 
+
+For the final step, the service can be containerized typing the following:
+
+`mlflow models build-docker -m ./mlruns/0/<YOUR MODEL ID>/artifacts/sk-learn-ridge-regression -n model-docker-image --enable-mlserver`
+
+By the time I wrote this document I was getting a UnicodeDecodeError, but nonetheless the image was in my repository:
+
+![docker image](./bain-ml-engineer-challenge-solution/example_images/docker-image.jpg)
+
+We can now initialize the server from the image using:
+
+`docker run -p 5001:8080 "model-docker-image"`
+
+And check that the server is returning predictions, we can use the same command as before in a new window, with the new port, from our bain-ml-engineer-challenge-solution folder:
+
+`curl http://127.0.0.1:5001/invocations -H 'Content-Type: text/csv' --data-binary @X_test.csv`
+
+We can check that we're getting the predictions from the docker container (our former 1234 server is already disconnected):
+
+![final step](./bain-ml-engineer-challenge-solution/example_images/docker_ml_server.jpg)
+
+
+I've tried and tested this steps in a new cloned repository in my local machine and they work perfectly. That said, feel free to report any issues. 
 
 Best,
 
