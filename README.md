@@ -23,7 +23,7 @@ To run this pipeline and get advantage of all its functionalities you will need:
 
 Open your preferred CLI (I use git bash) and type the following commands:
 
-`cd bain-ml-engineer-challenge-solution`
+`cd bain-ml-engineer-challenge/bain-ml-engineer-challenge-solution`
 
 `conda init`
 
@@ -45,9 +45,11 @@ and view it at [localhost:5000](http://localhost:5000/)
 
 ## Getting predictions from the model
 
-To deploy a local (port 1234) REST server that can serve predictions type:
+To deploy a local (port 1234) REST server that can serve predictions use a new CLI window to type:
 
 `mlflow models serve -m ./mlruns/0/<YOUR MODEL ID>/artifacts/sk-learn-ridge-regression -p 1234`
+
+Make sure your model ID matches one of the names under the ./mlruns/0/ folder.
 
 The training stage saves the test data from training in a .csv file called X_test.csv. This will come in handy now, please type the following in a new CLI window:
 
