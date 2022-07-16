@@ -18,17 +18,22 @@ To run this pipeline and get advantage of all its functionalities you will need:
 - I use git bash, but any shell with git will do the work.
 - to clone this repository into a local folder 
 `git clone https://github.com/smferro54/bain-ml-engineer-challenge.git`
-- cd into the bain-ml-engineer-challenge folder
 
 ## Running the model
+
+Open your preferred CLI (I use git bash) and type the following commands:
+
+`cd bain-ml-engineer-challenge_solution`
 
 `conda init`
 
 `mlflow run .`
 
-![succesful model](./example_images/mlflow_run_success.jpg)
+You should get a model ID when the run succeeds.
 
-You should get a model ID when the run succeeds. You can check the results in the web UI. 
+![succesful model](./bain-ml-engineer-challenge/example_images/mlflow_run_success.jpg)
+
+You can check the results in the web UI. 
 
 `mlflow ui`
 
@@ -36,7 +41,7 @@ and view it at [localhost:5000](http://localhost:5000/)
 
 ![run log](./bain-ml-engineer-challenge/example_images/matching_run.jpg)
 
-![serialized model](./example_images/model_pkl.jpg)
+![serialized model](./bain-ml-engineer-challenge/example_images/model_pkl.jpg)
 
 Best,
 
