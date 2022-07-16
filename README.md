@@ -49,11 +49,11 @@ To deploy a local (port 1234) REST server that can serve predictions type:
 
 `mlflow models serve -m ./mlruns/0/<YOUR MODEL ID>/artifacts/sk-learn-ridge-regression -p 1234`
 
-The training stage saves the test data from training in a .csv file called X_test.csv. This will come in handy now, in a new CLI window type:
+The training stage saves the test data from training in a .csv file called X_test.csv. This will come in handy now, please type the following in a new CLI window:
 
 `curl http://127.0.0.1:1234/invocations -H 'Content-Type: text/csv' --data-binary @X_test.csv`
 
-Which gives the following predictions:
+This should give the following predictions:
 
 ![predictions](./bain-ml-engineer-challenge-solution/example_images/predictions.jpg)
 
@@ -73,7 +73,7 @@ We can now initialize the server from the image using:
 
 `docker run -p 5001:8080 "model-docker-image"`
 
-And check that the server is returning predictions, we can use the same command as before in a new window, with the new port, from our bain-ml-engineer-challenge-solution folder:
+And check that the server is returning predictions. We can use the same command as before in a new CLI window we can open from our bain-ml-engineer-challenge-solution folder, using the new 5001 port:
 
 `curl http://127.0.0.1:5001/invocations -H 'Content-Type: text/csv' --data-binary @X_test.csv`
 
